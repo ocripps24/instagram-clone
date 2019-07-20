@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:instagram_clone/models/comment.dart';
+import 'package:instagram_clone/models/global.dart';
+import 'package:instagram_clone/models/post.dart';
+// import 'package:instagram_clone/models/user.dart';
+// import 'package:instagram_clone/main.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,7 +34,33 @@ class _HomePageState extends State<HomePage> {
   
   Widget getPost(Post post) {
     return Container(
-      child: Text("Hello"),
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: CircleAvatar(backgroundImage: post.user.profilePicture,),
+                    ),
+                    Text(post.user.username,)
+                  ],
+                ),
+                IconButton(
+                  icon: Icon(Icons.more_horiz),
+                  onPressed: () {
+                    
+                  },
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 } 

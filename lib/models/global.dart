@@ -3,7 +3,7 @@ import 'user.dart';
 import 'post.dart';
 import 'comment.dart';
 
-Post post1 = new Post(new AssetImage('lib/assets/photo_1.jpeg'), user, "My first post", DateTime.now(), [follower1, follower2, follower3], [], false, false); 
+Post post1 = new Post(new AssetImage('lib/assets/photo_1.jpg'), user, "My first post", DateTime.now(), [follower1, follower2, follower3], [], false, false); 
 final User user = new User('olivercripps', AssetImage('lib/assets/my_profile.jpg'), [
   follower1, 
   follower2, 
