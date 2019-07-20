@@ -77,7 +77,9 @@ class _HomePageState extends State<HomePage> {
                   Icon(Icons.favorite, size: 30, color: post.isLiked ? Colors.red : Colors.black,),
                   IconButton(icon: Icon(Icons.favorite), color: post.isLiked ? Colors.red : Colors.white,
                   onPressed: () {
-                    
+                    setState(() {
+                      userPosts[0].isLiked = !post.isLiked; 
+                    });
                   },)
                 ],)
             ],
