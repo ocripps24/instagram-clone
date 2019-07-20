@@ -4,6 +4,7 @@ import 'pages/home.dart';
 import 'pages/notifications.dart';
 import 'pages/profile.dart';
 import 'pages/search.dart';
+import 'package:instagram_clone/models/global.dart';
 
 void main() => runApp(MyApp());
 

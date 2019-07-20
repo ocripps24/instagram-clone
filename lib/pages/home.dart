@@ -53,11 +53,34 @@ class _HomePageState extends State<HomePage> {
                 IconButton(
                   icon: Icon(Icons.more_horiz),
                   onPressed: () {
-                    
+
                   },
                 )
               ],
             ),
+          ),
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: 285
+            ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: post.image
+              )
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Stack(
+                alignment: Alignment(0, 0),
+                children: <Widget>[
+                  Icon(Icons.favorite, size: 30, color: post.isLiked ? Colors.red : Colors.black,),
+                  IconButton(icon: Icon(Icons.favorite), color: post.isLiked ? Colors.red : Colors.white,
+                  onPressed: () {
+                    
+                  },)
+                ],)
+            ],
           )
         ],
       ),
