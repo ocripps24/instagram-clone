@@ -47,6 +47,31 @@ class _MyHomePageState extends State<MyHomePage> {
         body: TabBarView(
           children: pages,
         ),
+        bottomNavigationBar: Container(
+          margin: EdgeInsets.only(bottom: 20),
+          child: new TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.home),
+              ),
+              Tab(
+                icon: Icon(Icons.search),
+              ),
+              Tab(
+                icon: Icon(Icons.add),
+              ),
+              Tab(
+                icon: Icon(Icons.favorite),
+              ),
+              Tab(
+                icon: Icon(Icons.perm_identity),
+              ),
+            ],
+            unselectedLabelColor: Colors.black,
+            labelColor: Colors.blue,
+            indicatorColor: Colors.transparent,
+          ),
+        ),
       ),
     );
   }
