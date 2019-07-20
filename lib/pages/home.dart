@@ -9,7 +9,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      child: ListView(
+        children: <Widget>[
+          Column(
+            children: getPosts(),
+          )
+        ],
+      ),
+    );
+  }
+
+  List<Widget> getPosts() {
+    List<Widget> posts = []; 
+    for (Post post in userPosts) {
+      posts.add(getPost(post));
+    }
+    return posts;
+  }
+  
+  Widget getPost(Post post) {
+    return Container(
+      child: Text("Hello"),
     );
   }
 } 
