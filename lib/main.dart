@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'pages/create_post.dart';
+import 'pages/home.dart';
+import 'pages/notifications.dart';
+import 'pages/profile.dart';
+import 'pages/search.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,14 +26,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  List<Widget> pages = [
+    HomePage(),
+    SearchPage(),
+    CreatePostPage(),
+    NotificationsPage(),
+    ProfilePage()
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Instagram'),
-      ),
-      body: Center(
-        child: Column(
+    return DefaultTabController(
+      length: 5,
+      initialIndex: 0,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Instagram'),
+        ),
+        body: TabBarView(
+          children: pages,
         ),
       ),
     );
