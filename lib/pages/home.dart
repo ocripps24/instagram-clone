@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:instagram_clone/models/comment.dart';
+import 'package:instagram_clone/models/comment.dart';
 import 'package:instagram_clone/models/global.dart';
+import 'package:instagram_clone/models/global.dart' as prefix0;
 import 'package:instagram_clone/models/post.dart';
 import 'package:instagram_clone/models/user.dart';
 // import 'package:instagram_clone/main.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     Map<int, Widget> pageview = {
       1 : getMain(),
       2 : getLikes(the_post.likes),
-      // 3 : getComments(the_post.comments)
+      3 : getComments(the_post.comments)
     };
     return pageview[page];
   }
@@ -60,10 +61,8 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> getUserStories() {
     List<Widget> stories = [];
-    for (int i = 0; i < 5; i++) {
-      for (User follower in user.following) {
-        stories.add(getStory(follower));
-      }
+    for (User follower in user.following) {
+      stories.add(getStory(follower));
     }
     return stories; 
   }
@@ -261,9 +260,9 @@ class _HomePageState extends State<HomePage> {
             child: Text("View all " + post.comments.length.toString() + " comments", style: textStyleLightGrey,),
             onPressed: () {
               setState(() {
-                // the_post = post;
-                // page = 3;
-                // build(context);
+                the_post = post;
+                page = 3;
+                build(context);
               });
             },
           ),
@@ -332,5 +331,125 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+  }
+
+  Widget getComments(List<Comment> likes) {
+    List<Widget> likers = [];
+    DateTime now = DateTime.now();
+    for (Comment comment in likes) {
+      int hoursAgo = (now.hour) - (comment.dateOfComment.hour -1);
+      likers.add(new Container(
+        child: FlatButton(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    width: 30,
+                    height: 30,
+                    child: CircleAvatar(
+                      backgroundImage: comment.user.profilePicture,
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      RichText(
+                        text: new TextSpan(
+                          style: new TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            new TextSpan(text: comment.user.username, style: textStyleBold),
+                            new TextSpan(text: comment.comment, style: textStyle),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: Text(hoursAgo.toString() + "h", style: textStyleLightGrey),
+                          ),
+                          Container(
+                            child: Text("like", style: textStyleLightGrey),
+                          ),
+                          Container(
+                            child: Text("Reply", style: textStyleLightGrey),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+              Stack(
+                alignment: Alignment(0, 0),
+                children: <Widget>[
+                  Container(
+                    child: Icon(Icons.favorite, color: Colors.black, size: 15,)
+                  ),
+                  Container(
+                    child: IconButton(
+                      icon: Icon(Icons.favorite, color: comment.isLiked ? Colors.black : Colors.white, size: 10),
+                      onPressed: () {
+                        setState(() {
+                          comment.isLiked = !comment.isLiked;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          onPressed: () {
+
+          },
+        ),
+      ));
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
+                    onPressed: () {
+                      setState(() {
+                        page = 1;
+                        build(context);
+                      });
+                    },
+                  ),
+                  Text('Comments', style: textStyleBold,),
+                ],
+              ),
+              IconButton(
+                icon: Icon(Icons.send, color: Colors.black,),
+                onPressed: () {
+
+                },
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: Container(
+        child: ListView(
+          children: likers,
+        ),
+      ),
+    );
   }
 } 
