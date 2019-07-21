@@ -4,6 +4,7 @@ import 'package:instagram_clone/models/global.dart';
 import 'package:instagram_clone/models/post.dart';
 import 'package:instagram_clone/models/user.dart';
 // import 'package:instagram_clone/main.dart';
+// import 'package:instagram_clone/models/appbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -291,18 +292,43 @@ class _HomePageState extends State<HomePage> {
                   color: user.following.contains(follower) ? Colors.white : Colors.blue,
                   child: Text(user.following.contains(follower) ? "Following" : "Follow", style: TextStyle(fontWeight: FontWeight.bold, color: user.following.contains(follower) ? Colors.grey : Colors.white)),
                   onPressed: () {
-
+                    setState(() {
+                      if (user.following.contains(follower)) {
+                        user.following.remove(follower);
+                      } else {
+                        user.following.add(follower);
+                      }
+                    });
                   },
                 ),
               )
             ],
           ),
+          onPressed: () {
+
+          },
         ),
       ));
     }
-    return Container(
-      child: ListView(
-        children: likers,
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Likes", style: textStyleBold),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
+          onPressed: () {
+            setState(() {
+              page = 1;
+              build(context);
+            });
+          },
+        ),
+      ),
+      body: Container(
+        child: ListView(
+          children: likers,
+        ),
       ),
     );
 

@@ -42,9 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 5,
       initialIndex: 0,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Instagram'),
-        ),
         body: TabBarView(
           children: pages,
         ),
