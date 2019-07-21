@@ -70,20 +70,56 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Row(
+                children: <Widget>[
+                      Stack(
+                    alignment: Alignment(0, 0),
+                    children: <Widget>[
+                      Icon(Icons.favorite, size: 30, color: post.isLiked ? Colors.red : Colors.black,),
+                      IconButton(icon: Icon(Icons.favorite), color: post.isLiked ? Colors.red : Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          userPosts[0].isLiked = !post.isLiked; 
+                        });
+                      },)
+                    ],
+                  ),
+                  Stack(
+                    alignment: Alignment(0, 0),
+                    children: <Widget>[
+                      Icon(Icons.mode_comment, size: 30, color: Colors.black,),
+                      IconButton(icon: Icon(Icons.mode_comment), color: Colors.white,
+                      onPressed: () {
+                        
+                      },)
+                    ],
+                  ),
+                  Stack(
+                    alignment: Alignment(0, 0),
+                    children: <Widget>[
+                      Icon(Icons.send, size: 30, color: Colors.black,),
+                      IconButton(icon: Icon(Icons.send), color: Colors.white,
+                      onPressed: () {
+                        
+                      },)
+                    ],
+                  ),
+                ],
+              ),
               Stack(
                 alignment: Alignment(0, 0),
                 children: <Widget>[
-                  Icon(Icons.favorite, size: 30, color: post.isLiked ? Colors.red : Colors.black,),
-                  IconButton(icon: Icon(Icons.favorite), color: post.isLiked ? Colors.red : Colors.white,
+                  Icon(Icons.bookmark, size: 30, color: Colors.black,),
+                  IconButton(icon: Icon(Icons.bookmark), color: Colors.white,
                   onPressed: () {
-                    setState(() {
-                      userPosts[0].isLiked = !post.isLiked; 
-                    });
+                    
                   },)
-                ],)
+                ],
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
