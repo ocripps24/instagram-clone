@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.only(right: 10),
                       child: CircleAvatar(backgroundImage: post.user.profilePicture,),
                     ),
-                    Text(post.user.username,)
+                    Text(post.user.username, style: textStyleBold,)
                   ],
                 ),
                 IconButton(
@@ -233,14 +233,17 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           FlatButton(
-            child: Text(post.likes.length.toString() + " likes", style: textStyleBold,),
+            child: Container(
+              margin: EdgeInsets.only(right: 15),
+              child: Text(post.likes.length.toString() + " likes", style: textStyleBold,),
+            ),
             onPressed: () {
-              setState(() {
-                the_post = post; 
-                page = 2;
-                build(context);
-              });
-            },
+                setState(() {
+                  the_post = post; 
+                  page = 2;
+                  build(context);
+                });
+              },
           ),
           Row(
             children: <Widget>[
