@@ -3,6 +3,10 @@ import 'user.dart';
 import 'post.dart';
 import 'comment.dart';
 
+TextStyle textStyle = new TextStyle(fontFamily: 'Gotham');
+TextStyle textStyleBold = new TextStyle(fontFamily: 'Gotham', fontWeight: FontWeight.bold, color: Colors.black);
+TextStyle textStyleLightGrey = new TextStyle(fontFamily: 'Gotham', color: Colors.grey);
+
 Post post1 = new Post(new AssetImage('lib/images/photo_1.jpg'), user, "My first post", DateTime.now(), [follower1, follower2, follower3], [], false, false); 
 final User user = new User('olivercripps', AssetImage('lib/images/my_profile.jpg'), [
   follower1, 

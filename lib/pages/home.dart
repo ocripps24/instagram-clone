@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget getPost(Post post) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             margin: EdgeInsets.all(5),
@@ -122,11 +123,43 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     setState(() {
                       userPosts[0].isSaved = post.isSaved ? false : true;
+                      if (!post.isSaved) {
+                        user.savedPosts.remove(post);
+                      } else {
+                        user.savedPosts.add(post);
+                      }
                     });
                   },)
                 ],
               ),
             ],
+          ),
+          FlatButton(
+            child: Text(post.likes.length.toString() + " likes", style: textStyleBold,),
+            onPressed: () {
+
+            },
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 15, right: 10),
+                child: Text(
+                  post.user.username,
+                  style: textStyleBold,
+                ),
+              ),
+              Text(
+                post.description,
+                style: textStyle,
+                )
+            ],
+          ),
+          FlatButton(
+            child: Text("View all " + post.comments.length.toString() + " comments", style: textStyleLightGrey,),
+            onPressed: () {
+
+            },
           ),
         ],
       ),
