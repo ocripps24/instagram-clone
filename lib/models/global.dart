@@ -18,7 +18,7 @@ final User user = new User('olivercripps', AssetImage('lib/images/my_profile.jpg
   follower3
 ], [], [], false);
 
-User follower1 = new User('thierry_henry', AssetImage('lib/images/thierr_henry.jpg'), [], [], [], [], true);
+User follower1 = new User('thierry_henry', AssetImage('lib/images/thierry_henry.jpg'), [], [], [], [], true);
 User follower2 = new User('em_rata', AssetImage('lib/images/em_rata.jpg'), [], [], [], [], true);
 User follower3 = new User('anthony_joshua', AssetImage('lib/images/anthony_joshua.jpg'), [], [], [], [], false);
 

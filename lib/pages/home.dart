@@ -17,7 +17,49 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         children: <Widget>[
           Column(
-            children: getPosts(),
+            children: <Widget> [
+              Container(
+                height: 80,
+                child: getStories(),  
+              ),
+              Column(
+                children: getPosts(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget getStories() {
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: getUserStories()
+    );
+  }
+
+  List<Widget> getUserStories() {
+    List<Widget> stories = [];
+    for (int i = 0; i < 5; i++) {
+      for (User follower in user.following) {
+        stories.add(getStory(follower));
+      }
+    }
+    return stories; 
+  }
+
+  Widget getStory(User follower) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 50,
+            width: 50,
+            child: CircleAvatar(
+              backgroundImage: follower.profilePicture,
+            ),
           )
         ],
       ),
