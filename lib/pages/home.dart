@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:instagram_clone/models/comment.dart';
 import 'package:instagram_clone/models/global.dart';
 import 'package:instagram_clone/models/post.dart';
-// import 'package:instagram_clone/models/user.dart';
+import 'package:instagram_clone/models/user.dart';
 // import 'package:instagram_clone/main.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,23 +11,41 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static int page = 1;
+  static Post the_post = post1;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: <Widget>[
-          Column(
-            children: <Widget> [
-              Container(
-                height: 80,
-                child: getStories(),  
-              ),
-              Column(
-                children: getPosts(),
-              ),
-            ],
-          ),
-        ],
+    Map<int, Widget> pageview = {
+      1 : getMain(),
+      2 : getLikes(the_post.likes),
+      // 3 : getComments(the_post.comments)
+    };
+    return pageview[page];
+  }
+
+  Widget getMain() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Instagram", style: textStyleBold),
+        backgroundColor: Colors.white,
+      ),
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Container(
+                  height: 80,
+                  child: getStories(),
+                ),
+                Divider(),
+                Column(
+                  children: getPosts(context),
+                )
+              ],
+            )
+          ],
+        )
       ),
     );
   }
@@ -97,15 +115,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  List<Widget> getPosts() {
+  List<Widget> getPosts(BuildContext context) {
     List<Widget> posts = []; 
+    int index = 0;
     for (Post post in userPosts) {
-      posts.add(getPost(post));
+      posts.add(getPost(context, post, index));
+      index++;
     }
     return posts;
   }
   
-  Widget getPost(Post post) {
+  Widget getPost(BuildContext context, Post post, int index) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,8 +154,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
+            constraints: BoxConstraints.expand(height: 1),
+            color: Colors.grey,
+          ),
+          Container(
             constraints: BoxConstraints(
-              maxHeight: 285
+              maxHeight: 282
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -148,14 +172,14 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                      Stack(
+                  Stack(
                     alignment: Alignment(0, 0),
                     children: <Widget>[
                       Icon(Icons.favorite, size: 30, color: post.isLiked ? Colors.red : Colors.black,),
                       IconButton(icon: Icon(Icons.favorite), color: post.isLiked ? Colors.red : Colors.white,
                       onPressed: () {
                         setState(() {
-                          userPosts[0].isLiked = !post.isLiked; 
+                          userPosts[index].isLiked = !post.isLiked; 
                           if (!post.isLiked) {
                             post.likes.remove(user);
                           } else {
@@ -195,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                   IconButton(icon: Icon(Icons.bookmark), color: post.isSaved ? Colors.black : Colors.white,
                   onPressed: () {
                     setState(() {
-                      userPosts[0].isSaved = post.isSaved ? false : true;
+                      userPosts[index].isSaved = post.isSaved ? false : true;
                       if (!post.isSaved) {
                         user.savedPosts.remove(post);
                       } else {
@@ -210,7 +234,11 @@ class _HomePageState extends State<HomePage> {
           FlatButton(
             child: Text(post.likes.length.toString() + " likes", style: textStyleBold,),
             onPressed: () {
-
+              setState(() {
+                the_post = post; 
+                page = 2;
+                build(context);
+              });
             },
           ),
           Row(
@@ -231,11 +259,52 @@ class _HomePageState extends State<HomePage> {
           FlatButton(
             child: Text("View all " + post.comments.length.toString() + " comments", style: textStyleLightGrey,),
             onPressed: () {
-
+              setState(() {
+                // the_post = post;
+                // page = 3;
+                // build(context);
+              });
             },
           ),
         ],
       ),
     );
+  }
+
+  Widget getLikes(List<User> likes) {
+    List<Widget> likers = [];
+    for (User follower in likes) {
+      likers.add(new Container(
+        height: 45,
+        padding: EdgeInsets.all(10),
+        child: FlatButton(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(follower.username, style: textStyleBold),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.grey),
+                  borderRadius: BorderRadius.all(Radius.circular(3))
+                ),
+                child: FlatButton(
+                  color: user.following.contains(follower) ? Colors.white : Colors.blue,
+                  child: Text(user.following.contains(follower) ? "Following" : "Follow", style: TextStyle(fontWeight: FontWeight.bold, color: user.following.contains(follower) ? Colors.grey : Colors.white)),
+                  onPressed: () {
+
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ));
+    }
+    return Container(
+      child: ListView(
+        children: likers,
+      ),
+    );
+
   }
 } 
