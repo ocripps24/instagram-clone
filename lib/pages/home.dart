@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: <Widget>[
                 Container(
-                  height: 80,
+                  height: 82,
                   child: getStories(),
                 ),
                 Divider(),
@@ -69,6 +69,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getStory(User follower) {
     return Container(
+      padding: EdgeInsets.only(top: 5),
       margin: EdgeInsets.all(5),
       child: Column(
         children: <Widget>[
