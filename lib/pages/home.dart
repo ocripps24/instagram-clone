@@ -339,6 +339,7 @@ class _HomePageState extends State<HomePage> {
     for (Comment comment in likes) {
       int hoursAgo = (now.hour) - (comment.dateOfComment.hour -1);
       likers.add(new Container(
+        padding: EdgeInsets.all(10),
         child: FlatButton(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,6 +349,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
+                    margin: EdgeInsets.only(right: 10),
                     width: 30,
                     height: 30,
                     child: CircleAvatar(
@@ -365,6 +367,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           children: <TextSpan>[
                             new TextSpan(text: comment.user.username, style: textStyleBold),
+                            new TextSpan(text: ' ', style: textStyle),
                             new TextSpan(text: comment.comment, style: textStyle),
                           ],
                         ),
@@ -373,12 +376,15 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
+                            margin: EdgeInsets.only(right: 10, top: 20),
                             child: Text(hoursAgo.toString() + "h", style: textStyleLightGrey),
                           ),
                           Container(
+                            margin: EdgeInsets.only(right: 10, top: 20),
                             child: Text("like", style: textStyleLightGrey),
                           ),
                           Container(
+                            margin: EdgeInsets.only(right: 10, top: 20),
                             child: Text("Reply", style: textStyleLightGrey),
                           ),
                         ],
