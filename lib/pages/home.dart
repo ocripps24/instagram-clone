@@ -90,7 +90,8 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             )
-          )
+          ),
+          Text(follower.username, style: textStyle)
         ],
       ),
     );

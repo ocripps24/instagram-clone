@@ -18,9 +18,9 @@ final User user = new User('olivercripps', AssetImage('lib/images/my_profile.jpg
   follower3
 ], [], [], false);
 
-User follower1 = new User('thierry_henry', AssetImage('lib/images/thierry_henry.jpg'), [], [], [], [], true);
-User follower2 = new User('em_rata', AssetImage('lib/images/em_rata.jpg'), [], [], [], [], true);
-User follower3 = new User('anthony_joshua', AssetImage('lib/images/anthony_joshua.jpg'), [], [], [], [], false);
+User follower1 = new User('t_henry', AssetImage('lib/images/thierry_henry.jpg'), [], [], [], [], true);
+User follower2 = new User('m_rata', AssetImage('lib/images/em_rata.jpg'), [], [], [], [], true);
+User follower3 = new User('big_josh', AssetImage('lib/images/anthony_joshua.jpg'), [], [], [], [], false);
 
 List<Post> userPosts = [
   new Post(new AssetImage('lib/images/photo_1.jpg'), user, "My First Post", DateTime.now(), [follower1, follower2, follower3], [
