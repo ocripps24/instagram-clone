@@ -82,7 +82,13 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         setState(() {
                           userPosts[0].isLiked = !post.isLiked; 
+                          if (!post.isLiked) {
+                            post.likes.remove(user);
+                          } else {
+                            post.likes.add(user);
+                          }
                         });
+                        print(post.likes.length);
                       },)
                     ],
                   ),
@@ -112,9 +118,11 @@ class _HomePageState extends State<HomePage> {
                 alignment: Alignment(0, 0),
                 children: <Widget>[
                   Icon(Icons.bookmark, size: 30, color: Colors.black,),
-                  IconButton(icon: Icon(Icons.bookmark), color: Colors.white,
+                  IconButton(icon: Icon(Icons.bookmark), color: post.isSaved ? Colors.black : Colors.white,
                   onPressed: () {
-                    
+                    setState(() {
+                      userPosts[0].isSaved = post.isSaved ? false : true;
+                    });
                   },)
                 ],
               ),
