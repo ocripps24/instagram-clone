@@ -163,6 +163,7 @@ class _HomePageState extends State<HomePage> {
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
+                fit: BoxFit.fill,
                 image: post.image
               )
             ),
