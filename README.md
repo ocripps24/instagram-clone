@@ -1,6 +1,6 @@
 # instagram_clone
 
-### [Welcome](#welcome) - [Screenshots](#screenshots) - [Process & Credits](#process--credits) - [Instructions](#instructions) - [Installing Flutter](#installing-flutter)
+### [Welcome](#welcome) - [Screenshots](#screenshots) - [Video](#video) - [Process & Credits](#process--credits) - [Instructions](#instructions) - [Installing Flutter](#installing-flutter)
 
 ## Welcome
 
@@ -9,6 +9,10 @@ Welcome to my instagram UI clone built using Flutter.
 ## Screenshots
 
 <img src="screenshots/group.jpg">
+
+## Video
+
+You can find a short video of the app in action here: https://youtu.be/mdu1C4mIYps
 
 ## Process & Credits
 The objective was to build the front end UI of the first page of the Instagram app. This is an imitation build following a One Day build video a this link: https://www.youtube.com/watch?v=E2uEfOls4e4
