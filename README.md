@@ -10,9 +10,8 @@ Welcome to my instagram UI clone built using Flutter.
 
 <img src="screenshots/group.jpg">
 
-
 ## Process & Credits
-The objective was to build the front end/UI side of the first page of the Instagram app. This is an imitation build following a One Day build video a this link: https://www.youtube.com/watch?v=E2uEfOls4e4
+The objective was to build the front end UI of the first page of the Instagram app. This is an imitation build following a One Day build video a this link: https://www.youtube.com/watch?v=E2uEfOls4e4
 
 I have also reviewed the original developers source code for the project here: https://github.com/KalleHallden/Instagram 
 
@@ -20,12 +19,10 @@ The objective was to develop some further exposure to the exciting new Flutter f
 
 ## Instructions
 
-```
-git clone https://github.com/ocripps24/instagram-clone
-cd instagram-clone
-open -a simulator.app (XCode must be installed on your computer to run the XCode simulator although a similar Android system can be used)
-flutter run (You must point to your local flutter installation to use flutter commands (See below))
-```
+1. git clone https://github.com/ocripps24/instagram-clone
+2. cd instagram-clone
+3. open -a simulator.app (XCode must be installed on your computer to run the XCode simulator although a similar Android system can be used)
+4. flutter run (You must point to your local flutter installation to use flutter commands (See below))
 
 ## Installing Flutter
 
