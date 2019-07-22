@@ -8,10 +8,8 @@ Welcome to my instagram UI clone built using Flutter.
 
 ## Screenshots
 
-<img src="screenshots/instagram_1.png" width="40%">
-<img src="screenshots/instagram_2.png" width="40%">
-<img src="screenshots/instagram_3.png" width="40%">
-<img src="screenshots/instagram_4.png" width="40%">
+<img src="screenshots/group.jpg">
+
 
 ## Process & Credits
 The objective was to build the front end/UI side of the first page of the Instagram app. This is an imitation build following a One Day build video a this link: https://www.youtube.com/watch?v=E2uEfOls4e4
